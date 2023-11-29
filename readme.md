@@ -1,1 +1,1 @@
-hosted in : https://uasbbpalarm.mhmmdaskrhbblh.repl.co/
+hosted on : https://uasbbpalarm.mhmmdaskrhbblh.repl.co/
