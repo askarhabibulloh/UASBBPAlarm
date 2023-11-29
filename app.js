@@ -1,3 +1,4 @@
+
 class Clock {
   constructor() {
       this.#init();
@@ -24,9 +25,12 @@ class Clock {
 }
 
 class AlarmClock extends Clock {
+
+  #alarmTime=null;
+
   constructor() {
       super();
-      this.alarmTime = null;
+      this.#alarmTime = null;
       this.myAudio = this.#buildAudio();
       this.#initAlarm();
   }
@@ -127,7 +131,7 @@ class AlarmClock extends Clock {
       const selectedMin = min.options[min.selectedIndex].value;
       const selectedSec = sec.options[sec.selectedIndex].value;
 
-      this.alarmTime = this.checkZero(selectedHour) + ":" + this.checkZero(selectedMin) + ":" + this.checkZero(selectedSec);
+      this.#alarmTime = this.checkZero(selectedHour) + ":" + this.checkZero(selectedMin) + ":" + this.checkZero(selectedSec);
       this.disableInputs(true);
 
       // Set timeout untuk memeriksa waktu setelah waktu yang ditentukan
@@ -139,7 +143,7 @@ class AlarmClock extends Clock {
 
   #calculateTimeDifference() {
       const currentTime = new Date();
-      const alarmTimeArray = this.alarmTime.split(":");
+      const alarmTimeArray = this.#alarmTime.split(":");
       const alarmDateTime = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), alarmTimeArray[0], alarmTimeArray[1], alarmTimeArray[2]);
 
       return alarmDateTime - currentTime;
@@ -161,10 +165,11 @@ class AlarmClock extends Clock {
   }
 
   #clearAlarm() {
-      this.alarmTime = null;
+      this.#alarmTime = null;
       this.disableInputs(false);
       this.myAudio.pause();
   }
+
 
   #getSrc() {
       this.myAudio.src = document.getElementById("mySelect").value;
